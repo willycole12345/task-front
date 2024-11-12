@@ -37,6 +37,14 @@ const Dashboard = () => {
     }
      }
       
+     //const logout = () => {
+      //  localStorage.removeItem("token-info");
+      //  localStorage.setItem("access_token");
+      //  localStorage.setItem("firstname");
+      //  localStorage.setItem("lastname");
+      //  localStorage.setItem("userid");
+      // setIsLoggedin(false);
+     // };
 
 
 
