@@ -25,6 +25,17 @@ const EditForm = ({ record }) => {
                 body: JSON.stringify(recordarr)
         });
         let resData = await res.json();
+        if (resData.data.status === "success") {
+            toast.success( resData.data.message.message , {
+                position: "top-right"
+            });
+            setFormValue({ username: '', name: '', task_desc: '' })
+            setShowModal(false);
+        } else { 
+            toast.error(resData.data.message.message, {
+                position: "top-right" 
+              });
+        }
         console.log(resData.data.message.message);
     setRecords([...records, resData.data.message.message]);
 
