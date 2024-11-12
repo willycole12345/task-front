@@ -54,6 +54,7 @@ const handleSubmit = async (e) => {
             position: "top-right" 
           });
     }
+   // getdetails();
 }
     
 const validateform = (data) => {

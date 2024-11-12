@@ -1,11 +1,44 @@
 import React from "react";
 import { Link, Navigate , useNavigate} from 'react-router-dom';
+import toast, { Toaster } from 'react-hot-toast';
 
 
 const Sidebar = () => {
    const navigate = useNavigate();
-   const logout = () => {
-     // alert('here');
+
+   const logout = async () => {
+      const token = localStorage.getItem('access_token');
+       let res= await fetch("http://taskmanagement.test/api/auth/logout",{
+         method:"POST",
+          headers: {
+              'Authorization': `Bearer ${token}`,
+             'content-type': 'application/json'
+          },
+       //  body:JSON.stringify(allInputvalue)
+       });
+    
+       const resData = await res.json();
+
+         //  console.log(resData);
+       //   setRecords(resData.data.message);
+           if (resData.status === "success") {
+              //  setRecords(resData.data.message);
+           //    localStorage.removeItem("token-info");
+               localStorage.removeItem("access_token");
+               localStorage.removeItem("firstname");
+               localStorage.removeItem("lastname");
+               localStorage.removeItem("userid");
+              toast.success( resData.message , {
+               position: "top-right"
+           });
+                navigate("/");
+           } else {
+           //    setRecords([]);
+               toast.error(resData.message, {
+                 position: "top-right" 
+               });
+        }
+   
       
       // localStorage.removeItem("token-info");
       // localStorage.setItem("access_token");
@@ -13,7 +46,7 @@ const Sidebar = () => {
       // localStorage.setItem("lastname");
       // localStorage.setItem("userid");
      // setIsLoggedin(false);
-      navigate("/");
+    //  navigate("/");
      };
     return (
       <aside id="logo-sidebar" className="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700" aria-label="Sidebar">
