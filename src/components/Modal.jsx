@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 
-const Modal =({ open, onClose, children }) => {
-//   const [showModal, setShowModal] = useState(false);
-  return (
-   
-      <div onClick={onClose}
+const Modal = ({ open, onClose, children }) => {
+    //   const [showModal, setShowModal] = useState(false);
+    return (
+
+        <div onClick={onClose}
             className={`fixed inset-0 flex justify-center items-center transition-colors  ${open ? "visible bg-black/20" : "invisible"}`}
         >
 
@@ -17,13 +17,13 @@ const Modal =({ open, onClose, children }) => {
                 <button
                     onClick={onClose}
                     className="absolute top-2 right-2 p-1 rounded-lg text-gray-400 bg-white hover:bg-gray-50 hover:text-gray-600">
-                   X
+                    X
                 </button>
 
                 {children}
             </div>
         </div>
-  );
+    );
 };
 
 export default Modal;
