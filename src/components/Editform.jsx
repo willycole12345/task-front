@@ -26,13 +26,13 @@ const EditForm = ({ record }) => {
             });
         let resData = await res.json();
         if (resData.data.status === "success") {
-            toast.success(resData.data.message.message, {
+            toast.success(resData.data.message, {
                 position: "top-right"
             });
             setFormValue({ username: '', name: '', task_desc: '' })
             setShowModal(false);
         } else {
-            toast.error(resData.data.message.message, {
+            toast.error(resData.data.message, {
                 position: "top-right"
             });
         }
@@ -46,7 +46,7 @@ const EditForm = ({ record }) => {
 
     return (
         <div >
-
+         
             <form className="max-w-sm mx-auto" onSubmit={handleSubmit}>
                 <input type="hidden" name="id" value={record.id} />
                 <div className="mb-5">
